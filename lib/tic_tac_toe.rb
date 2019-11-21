@@ -70,16 +70,16 @@ def current_player
 end 
 
 
-def turn
-  input = gets.chomp
-  input_of_index = input_to_index(input)
-  if valid_move?(input_of_index)
-    move(input_of_index, current_player)
-    display_board
-  else
-    input = gets.chomp
-  end 
-end 
+# def turn
+#   input = gets.chomp
+#   input_of_index = input_to_index(input)
+#   if valid_move?(input_of_index)
+#     move(input_of_index, current_player)
+#     display_board
+#   else
+#     input = gets.chomp
+#   end 
+# end 
 
 
 
