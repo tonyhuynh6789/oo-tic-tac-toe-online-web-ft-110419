@@ -1,3 +1,4 @@
+require "pry"
 class TicTacToe
   
   
@@ -70,18 +71,89 @@ def current_player
 end 
 
 
-# def turn
-#   input = gets.chomp
-#   input_of_index = input_to_index(input)
-#   if valid_move?(input_of_index)
-#     move(input_of_index, current_player)
-#     display_board
-#   else
-#     input = gets.chomp
-#   end 
-# end 
+def turn
+ input = gets.chomp
+ translated_input = input_to_index(input)
+    if valid_move?(translated_input)
+    move(translated_input, current_player)
+    display_board
+    else 
+    input = gets.chomp
+    end 
+end 
+
+
+
+def won?
+  a = WIN_COMBINATIONS.find {|combo|
+  @board[combo[0]] == "X" && @board[combo[1]] == "X" && @board[combo[2]] == "X"
+  }
+  b = WIN_COMBINATIONS.find {|combo|
+  @board[combo[0]] == "O" && @board[combo[1]] == "O" && @board[combo[2]] == "O"
+  }
+  a || b
+end 
+
+
+def full?
+    @board.all? {|x| x == "X" || x == "O"}
+end 
+
+
+
+def draw?
+  if !won? && full?
+    true 
+  else 
+    false
+  end 
+end 
+
+
+
+def over?
+  if won? || full?
+    true
+  else
+    false
+  end 
+end 
+
+
+
+def winner
+if won? 
+  @board[won?[0]]  
+end 
+end 
+
+
+
+def play 
+  until won?
+  turn
+  end 
+  if won?
+    puts "congratulate the winner"
+  else draw
+    puts "it ended in a draw"
+  end 
+end 
+
+
+
+
 
 
 
 
 end 
+  
+
+  
+
+
+
+
+
+
