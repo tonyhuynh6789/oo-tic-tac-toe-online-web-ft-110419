@@ -1,10 +1,9 @@
 class TicTacToe
 
-
-
 def initialize 
   @board = Array.new(9, " ")
 end   
+
 
 WIN_COMBINATIONS = [
     [0, 1, 2],
@@ -38,13 +37,91 @@ def move(index, current_player = "X")
 end 
 
 
-
-  
-
-
-
+def position_taken?(index)
+   @board[index] == "X" || @board[index] == "O"
+end 
 
 
+def valid_move?(index)
+   index.between?(0,8) && !position_taken?(index)
+end 
 
+
+def turn_count 
+  @board.count {|x| x == "X" || x == "O"}
+end 
+
+
+def current_player
+  if turn_count.even?
+    "X"
+  else
+    "O"
+  end 
+end 
+
+
+def turn 
+  input = gets.chomp
+  translated = input_to_index(input)
+    if valid_move?(translated)
+      move(translated,current_player)
+      display_board
+    else
+      input = gets.chomp
+    end
+end 
+
+
+def won?
+  a = WIN_COMBINATIONS.find {|combo|
+    @board[combo[0]] == "X" && @board[combo[1]] == "X" && @board[combo[2]] == "X"
+  }
+  b = WIN_COMBINATIONS.find {|combo|
+    @board[combo[0]] == "O" && @board[combo[1]] == "O" && @board[combo[2]] == "O"
+  }
+  a || b
+end 
+
+
+def full?
+  @board.all? {|x| x == "X" or x == "O"}
+end 
+
+
+def draw?
+  full? && !won? 
+end
+
+
+def over?
+  full? || won?
+end 
+
+
+def winner 
+if won?
+  @board[won?[0]]
+end 
+end 
+
+
+def play
+  until over?
+    turn 
+  end 
+    if won?
+      "Congratulation"
+    elsif draw?
+      "it is ended in draw"
+    end 
+end 
 
 end 
+
+
+
+
+
+
+
