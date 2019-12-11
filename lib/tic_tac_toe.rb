@@ -38,11 +38,20 @@ end
 
 
 def position_taken?(index)
+<<<<<<< HEAD
    @board[index] == "X" || @board[index] == "O"
+=======
+  if @board[index] == "X" or @board[index] == "O"
+    true
+  else
+    false
+  end 
+>>>>>>> a705b8e7e607248c35b39a778233135bfa2e7e8d
 end 
 
 
 def valid_move?(index)
+<<<<<<< HEAD
    index.between?(0,8) && !position_taken?(index)
 end 
 
@@ -82,6 +91,15 @@ def won?
   }
   a || b
 end 
+=======
+  if 
+
+
+
+end 
+
+
+>>>>>>> a705b8e7e607248c35b39a778233135bfa2e7e8d
 
 
 def full?
